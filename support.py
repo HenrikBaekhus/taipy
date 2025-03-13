@@ -26,8 +26,8 @@ def Aircall():
 
 def TaipyGui():
 
-    data = pd.read_excel("dataset.xlsx")
-#    data = tickets.Structure()
+#    data = pd.read_excel("dataset.xlsx")
+    data = tickets.Structure()
     online = Aircall()
     onlineid = f"images/{online[0][0]}.jpg" 
     onlinename = online[0][1]
@@ -39,8 +39,8 @@ def TaipyGui():
     )
 
     def read_data(state, id):
-#        state.data = tickets.Structure()
-        state.data = pd.read_excel("dataset.xlsx")
+        state.data = tickets.Structure()
+#        state.data = pd.read_excel("dataset.xlsx")
         state.chart_data = (
             state.data
             .sort_values(by=['total'],ascending=True)
@@ -59,24 +59,26 @@ def TaipyGui():
         #             tgb.image("{onlineid}", class_name="onlineimage")
         #             tgb.text("{onlinename}", class_name="onlinename")
         with tgb.part(class_name="card mycard"):
-            with tgb.layout(columns="3 1"):
-                with tgb.part():
-                    tgb.chart(
-                        data="{chart_data}",
-                        title="Assigned tickets",
-                        class_name="my_bar",
-                        type="bar", 
-                        width=600,
-                        x="Technichian",
-                        y = ["In progress","On hold","New"], 
-                        color=["rgb(99, 182, 230)","rgb(133, 235, 164)","rgb(226, 155, 155)"],
-                        orientation='v',
-                        layout="{layout}"
-                    )
+            with tgb.layout(columns="1 5"):
+                
                 with tgb.part():
                     tgb.text("# **24/7 support**", mode="md")
                     tgb.image("{onlineid}", class_name="onlineimage")
                     tgb.text("{onlinename}", class_name="onlinename")
+                with tgb.part():
+                    tgb.chart(
+                    data="{chart_data}",
+                    title="Assigned tickets",
+                    class_name="my_bar",
+                    type="bar", 
+
+                    x="Technichian",
+                    y = ["In progress","On hold","New"], 
+                    color=["rgb(99, 182, 230)","rgb(133, 235, 164)","rgb(226, 155, 155)"],
+                    orientation='v',
+                    layout="{layout}"
+                )
+
                 # with tgb.part():
                 #     tgb.button(label="Press me", on_action=read_data)
     #                    tgb.table(data="{data}")
@@ -101,8 +103,8 @@ def TaipyGui():
         global stop_requested
         global state_id_list
         while not stop_requested:
-#            data = tickets.Structure()
-            data = pd.read_excel("dataset.xlsx")
+            data = tickets.Structure()
+#            data = pd.read_excel("dataset.xlsx")
             for state_id in state_id_list:
                 print(state_id)
                 print(datetime.datetime.now())

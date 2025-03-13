@@ -1,5 +1,5 @@
 :root {
-    --backcol: rgb(0, 155, 210);
+    --backcol: rgb(178, 194, 172);
     --secondcol: rgb(4, 30, 66);
 }
 
@@ -14,6 +14,7 @@ body, .MuiBox-root {
 .taipy-part {
     background-color: var(--backcol);
     padding: 15px;
+    padding-left: 100px;
     margin-bottom: 10px;
 }
 
@@ -46,7 +47,8 @@ b {
 }
 
 .my_bar {
-    width: 100%;
+    height:600px;
+    width:1400px;
     margin-left: auto;
     margin-right: auto;
 }

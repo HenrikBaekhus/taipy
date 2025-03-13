@@ -31,6 +31,7 @@ def TaipyGui():
     online = Aircall()
     onlineid = f"images/{online[0][0]}.jpg" 
     onlinename = online[0][1]
+    timetoken = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
     chart_data = (
         data
@@ -40,12 +41,14 @@ def TaipyGui():
 
     def read_data(state, id):
         state.data = tickets.Structure()
+        state.timetoken = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 #        state.data = pd.read_excel("dataset.xlsx")
         state.chart_data = (
             state.data
             .sort_values(by=['total'],ascending=True)
             .reset_index()
         )
+        
 
     layout = {"barmode": "stack", 
               "yaxis": {"title" : "Number of tickets"},
@@ -56,8 +59,6 @@ def TaipyGui():
             with tgb.layout(columns="1"):
                 with tgb.part():
                     tgb.text("# **Support and Service**", mode="md")
-        #             tgb.image("{onlineid}", class_name="onlineimage")
-        #             tgb.text("{onlinename}", class_name="onlinename")
         with tgb.part(class_name="card mycard"):
             with tgb.layout(columns="1 5"):
                 
@@ -78,14 +79,10 @@ def TaipyGui():
                     orientation='v',
                     layout="{layout}"
                 )
-
-                # with tgb.part():
-                #     tgb.button(label="Press me", on_action=read_data)
-    #                    tgb.table(data="{data}")
         with tgb.part(class_name="card"):
              with tgb.layout(columns="1"):
                 with tgb.part():
-                    tgb.text(f"Last update - {time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}", class_name="onlinename")
+                    tgb.text("Last update - {timetoken}", class_name="onlinename")
 
 
 
@@ -96,6 +93,7 @@ def TaipyGui():
 
     def update_data(state, data):
         state.data = data
+        state.timetoken = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         state.chart_data = (
             state.data
             .sort_values(by=['total'],ascending=True)
@@ -108,6 +106,7 @@ def TaipyGui():
         global state_id_list
         while not stop_requested:
             data = tickets.Structure()
+            timetoken = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 #            data = pd.read_excel("dataset.xlsx")
             for state_id in state_id_list:
                 print(state_id)
@@ -124,7 +123,7 @@ def TaipyGui():
     refresh_th.start()
 
     try:
-        gui.run(title="Support", run_browser=True, use_reloader=True, port=5048)
+        gui.run(title="Support", run_browser=True, use_reloader=True, port=5048, margin="1.2em", watermark="Henrik Bækhus")
     except KeyboardInterrupt as e:
         pass
     finally:

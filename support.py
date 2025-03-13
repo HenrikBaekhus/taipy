@@ -42,6 +42,9 @@ def TaipyGui():
     def read_data(state, id):
         state.data = tickets.Structure()
         state.timetoken = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+        state.online = Aircall()
+        state.onlineid = f"images/{online[0][0]}.jpg" 
+        state.onlinename = online[0][1]
 #        state.data = pd.read_excel("dataset.xlsx")
         state.chart_data = (
             state.data
@@ -62,11 +65,11 @@ def TaipyGui():
         with tgb.part(class_name="card mycard"):
             with tgb.layout(columns="1 5"):
                 
-                with tgb.part():
+                with tgb.part(class_name="container"):
                     tgb.text("# **24/7 support**", mode="md")
                     tgb.image("{onlineid}", class_name="onlineimage")
                     tgb.text("{onlinename}", class_name="onlinename")
-                with tgb.part():
+                with tgb.part(class_name="container"):
                     tgb.chart(
                     data="{chart_data}",
                     title="Assigned tickets",
@@ -94,6 +97,9 @@ def TaipyGui():
     def update_data(state, data):
         state.data = data
         state.timetoken = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+        state.online = Aircall()
+        state.onlineid = f"images/{online[0][0]}.jpg" 
+        state.onlinename = online[0][1]
         state.chart_data = (
             state.data
             .sort_values(by=['total'],ascending=True)
@@ -107,6 +113,9 @@ def TaipyGui():
         while not stop_requested:
             data = tickets.Structure()
             timetoken = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+            online = Aircall()
+            onlineid = f"images/{online[0][0]}.jpg" 
+            onlinename = online[0][1]
 #            data = pd.read_excel("dataset.xlsx")
             for state_id in state_id_list:
                 print(state_id)

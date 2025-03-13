@@ -5,7 +5,7 @@ import gevent
 import datetime
 import pandas as pd
 import tickets, aircall
-
+import time
 
 state_id_list = []
 stop_requested = False
@@ -82,6 +82,10 @@ def TaipyGui():
                 # with tgb.part():
                 #     tgb.button(label="Press me", on_action=read_data)
     #                    tgb.table(data="{data}")
+        with tgb.part(class_name="card"):
+             with tgb.layout(columns="1"):
+                with tgb.part():
+                    tgb.text(f"Last update - {time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}", class_name="onlinename")
 
 
 

@@ -1,0 +1,52 @@
+:root {
+    --backcol: rgb(0, 155, 210);
+    --secondcol: rgb(4, 30, 66);
+}
+
+* {
+    background-color: var(--backcol);
+}
+
+body, .MuiBox-root {
+    background-color: var(--backcol);
+}
+
+.taipy-part {
+    background-color: var(--backcol);
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.card { background-color: var(--secondcol); color: var(--backcol);}
+.card div { background-color: var(--secondcol); }
+.card h1 { 
+    background-color: var(--secondcol); 
+    font-size: 1.8rem;
+    }
+
+.onlineimage {
+    width: 150px !important;
+    border-radius: 5%;
+    border: 1px solid var(--backcol);
+}
+.onlinename {
+    background-color: var(--secondcol); 
+    border-radius: 5%;
+    padding: 2px;
+    font-size: 1.4rem;
+}
+
+
+strong,
+b {
+    font-weight: bold;
+    color: var(--backcol);
+    background-color: var(--secondcol);
+    width: 100%;
+}
+
+.my_bar {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}

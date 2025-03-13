@@ -10,7 +10,7 @@ class Connect:
         token = b64encode(f"{username}:{password}".encode('utf-8')).decode("ascii")
         token = f"Basic {token}"
         self.apiconnect = HTTPSConnection("api.aircall.io")
-        self.headers = { 'Authorization' : token } 
+        self.headers = { 'Authorization' : token, 'Connection' : 'close' } 
 
     def Query(self, query):
         self.apiconnect.request('GET', '/v1/' + query, headers=self.headers)
@@ -35,6 +35,7 @@ def GetAvailable():
 
     available = (users.loc[users["available"] == True])
     available247 = teams.loc[teams["id"].isin(available["id"].tolist())]
+    
     return (available247[["id", "name"]])
 
 if __name__ == "__main__":

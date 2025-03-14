@@ -2,6 +2,7 @@ from base64 import b64encode
 from http.client import HTTPSConnection
 import json
 import pandas as pd
+from io import StringIO
 
 class Connect:
     def __init__(self):
@@ -26,12 +27,12 @@ def GetAvailable():
     connect.Query("teams")    
     result = connect.JsonToPanda()
     jsonfile = json.dumps(result["teams"][0]["users"])        
-    teams = pd.read_json(jsonfile)
+    teams = pd.read_json(StringIO(jsonfile))
 
     connect.Query("users")
     result = connect.JsonToPanda()
     jsonfile = json.dumps(result["users"])
-    users = pd.read_json(jsonfile)
+    users = pd.read_json(StringIO(jsonfile))
 
     available = (users.loc[users["available"] == True])
     available247 = teams.loc[teams["id"].isin(available["id"].tolist())]
@@ -39,4 +40,4 @@ def GetAvailable():
     return (available247[["id", "name"]])
 
 if __name__ == "__main__":
-    Main()
+    print(GetAvailable())

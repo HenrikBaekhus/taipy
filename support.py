@@ -113,15 +113,26 @@ def TaipyGui():
         while not stop_requested:
             data = tickets.Structure()
             timetoken = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-            online = Aircall()
-            onlineid = f"images/{online[0][0]}.jpg" 
-            onlinename = online[0][1]
 #            data = pd.read_excel("dataset.xlsx")
             for state_id in state_id_list:
                 print(state_id)
                 print(datetime.datetime.now())
                 invoke_callback(gui, state_id, update_data, args=[data])
             gevent.sleep(60)
+
+    def refreshAircall(gui: Gui):
+        gevent.sleep(10)
+        global stop_requested
+        global state_id_list
+        while not stop_requested:
+            online = Aircall()
+            onlineid = f"images/{online[0][0]}.jpg" 
+            onlinename = online[0][1]
+            for state_id in state_id_list:
+                print(state_id)
+                print(datetime.datetime.now())
+                invoke_callback(gui, state_id, update_data, args=[data])
+            gevent.sleep(600)
 
     gui = Gui(page=page)
 
@@ -131,6 +142,12 @@ def TaipyGui():
     )
     refresh_th.start()
 
+    refresh_aircall = Thread(
+        target=refreshAircall,
+        args=[gui]
+    )
+    refresh_aircall.start()
+
     try:
         gui.run(title="Support", run_browser=True, use_reloader=True, port=5048, margin="1.2em", watermark="Henrik Bækhus")
     except KeyboardInterrupt as e:
@@ -139,6 +156,7 @@ def TaipyGui():
         global stop_requested
         stop_requested = True
         refresh_th.join()
+        refresh_aircall.join()
 
 
 if __name__ == "__main__":

@@ -21,6 +21,10 @@ class Connect:
     def JsonToPanda(self):
         jsonfile = json.loads(self.data)
         return jsonfile
+    
+    def ConnClose(self):
+        self.apiconnect.close()
+
 
 def GetAvailable():
     connect = Connect()
@@ -31,6 +35,7 @@ def GetAvailable():
 
     connect.Query("users")
     result = connect.JsonToPanda()
+    connect.ConnClose()
     jsonfile = json.dumps(result["users"])
     users = pd.read_json(StringIO(jsonfile))
 

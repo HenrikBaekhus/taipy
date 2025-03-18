@@ -115,8 +115,7 @@ def TaipyGui():
             timetoken = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 #            data = pd.read_excel("dataset.xlsx")
             for state_id in state_id_list:
-                print(state_id)
-                print(datetime.datetime.now())
+                print(f"Ticket: {datetime.datetime.now()}")
                 invoke_callback(gui, state_id, update_data, args=[data])
             gevent.sleep(60)
 
@@ -129,8 +128,7 @@ def TaipyGui():
             onlineid = f"images/{online[0][0]}.jpg" 
             onlinename = online[0][1]
             for state_id in state_id_list:
-                print(state_id)
-                print(datetime.datetime.now())
+                print(f"Aircall: {datetime.datetime.now()}")
                 invoke_callback(gui, state_id, update_data, args=[data])
             gevent.sleep(600)
 

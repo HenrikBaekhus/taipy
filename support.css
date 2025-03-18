@@ -1,5 +1,5 @@
 :root {
-    --backcol: rgb(228, 221, 198);
+    --backcol: rgb(200, 216, 219);
     --secondcol: rgb(4, 30, 66);
 }
 
@@ -48,7 +48,7 @@ b {
 
 .my_bar {
     height:600px;
-    width:1400px;
+    width:1000px;
     margin-left: auto;
     margin-right: auto;
 }

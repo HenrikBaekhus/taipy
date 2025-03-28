@@ -2,7 +2,9 @@ import json
 import requests
 from requests.auth import HTTPBasicAuth
 import pandas as pd
-
+import time
+import os
+import datetime
 
 class JitBit:
     def __init__(self):
@@ -19,6 +21,7 @@ def StructurizeTickets(pdtickets, pdtechs):
 
     grouped = pdtickets["AssignedToUserID"].value_counts()
     grouped.to_frame
+
     groupresponse = pdtickets.groupby(["AssignedToUserID"]).agg({
         'UpdatedByUser': 'sum'}).reset_index()
 
@@ -55,11 +58,40 @@ def Structure():
     tickets = apiconnect.apiquery("Tickets?mode=unclosed&count=300")    
     techs = apiconnect.apiquery("users?listMode=techs")
 
+    unassigned = str(sum(tickets["Technician"].isnull()))
+
     ticketstatusframe = StructurizeTickets(tickets, techs)
 
     ticketstatusframe["total"] = [(row["New"] + row["On hold"] + row["In progress"]) for index, row in ticketstatusframe.iterrows()]
 
-    return ticketstatusframe
+    if os.path.isfile("ticketstatus.xlsx"):
+        checkfile = pd.read_excel("ticketstatus.xlsx")
+        if (checkfile.to_string() == ticketstatusframe.to_string()):
+            print(f"{time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}: No changes to previous tickets!")
+        else:
+            ticketstatusframe.to_excel("ticketstatus.xlsx", index=False)
+            print(f"{time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}: Ticket file has been updated!")
+    else:
+        ticketstatusframe.to_excel("ticketstatus.xlsx", index=False)
+
+    if os.path.isfile("unassigned.txt"):
+        with open("unassigned.txt", "r") as file:
+            file = file.read()
+        if (unassigned.strip() == file.strip()):
+            print(f"{time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}: No changes to unassigned tickets!")
+        else:
+            with open("unassigned.txt", "w") as file:
+                file.write(unassigned)
+            print(f"{time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}: Unassigned file updated!")
+    else:
+        with open("unassigned.txt", "w") as file:
+            file.write(unassigned)
+
+#    return ticketstatusframe
 
 if __name__ == "__main__":
-    Main()
+#    Structure()
+
+    while(True):
+        Structure()
+        time.sleep(10)

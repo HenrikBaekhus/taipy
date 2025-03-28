@@ -1,0 +1,26 @@
+{
+"id": "DATANODE_date_to_forecast_c1cc097b-9665-49fd-88e3-eceb574a5de0",
+"config_id": "date_to_forecast",
+"scope": "<Scope.SCENARIO: 1>",
+"storage_type": "pickle",
+"owner_id": "SCENARIO_my_scenario_daa16fc3-fb03-4588-9bbe-72446ac76dfe",
+"parent_ids": [
+"TASK_predict_7092df94-3d4e-4087-8344-27f03723bcd0"
+],
+"last_edit_date": "2025-03-21T14:51:21.116288",
+"edits": [
+{
+"timestamp": "2025-03-21T14:51:21.116288"
+}
+],
+"version": "066dd113-bc80-4a7c-a42d-51f46b5fc03a",
+"validity_days": null,
+"validity_seconds": null,
+"edit_in_progress": false,
+"editor_id": null,
+"editor_expiration_date": null,
+"data_node_properties": {
+"is_generated": true,
+"path": "user_data/pickles/DATANODE_date_to_forecast_c1cc097b-9665-49fd-88e3-eceb574a5de0.p"
+}
+}

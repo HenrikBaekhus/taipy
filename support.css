@@ -11,11 +11,26 @@ body, .MuiBox-root {
     background-color: var(--backcol);
 }
 
+em  {
+    background-color: var(--secondcol);
+    margin-bottom: 10px;
+    margin-top: -50px;
+}
+
 .taipy-part {
     background-color: var(--backcol);
     padding: 15px;
     padding-left: 100px;
     margin-bottom: 10px;
+}
+
+.taipy-indicator {
+    background-color: var(--secondcol);
+    width: 100%;
+}
+
+[class^="MuiSlider-"] {
+    background-color: var(--secondcol);
 }
 
 .card { background-color: var(--secondcol); color: var(--backcol);}
@@ -26,7 +41,7 @@ body, .MuiBox-root {
     }
 
 .onlineimage {
-    width: 250px !important;
+    width: 150px !important;
     border-radius: 5%;
     border: 1px solid var(--backcol);
 }
@@ -36,6 +51,7 @@ body, .MuiBox-root {
     padding: 2px;
     font-size: 1.4rem;
 }
+
 
 
 strong,
@@ -48,7 +64,7 @@ b {
 
 .my_bar {
     height:600px;
-    width:1000px;
+/*    width:600px;*/
     margin-left: auto;
     margin-right: auto;
 }

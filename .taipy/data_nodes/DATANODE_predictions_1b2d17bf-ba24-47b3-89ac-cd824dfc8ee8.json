@@ -1,0 +1,22 @@
+{
+"id": "DATANODE_predictions_1b2d17bf-ba24-47b3-89ac-cd824dfc8ee8",
+"config_id": "predictions",
+"scope": "<Scope.SCENARIO: 1>",
+"storage_type": "pickle",
+"owner_id": "SCENARIO_my_scenario_daa16fc3-fb03-4588-9bbe-72446ac76dfe",
+"parent_ids": [
+"TASK_predict_7092df94-3d4e-4087-8344-27f03723bcd0"
+],
+"last_edit_date": "2025-03-21T14:51:21.287228",
+"edits": [],
+"version": "066dd113-bc80-4a7c-a42d-51f46b5fc03a",
+"validity_days": null,
+"validity_seconds": null,
+"edit_in_progress": false,
+"editor_id": null,
+"editor_expiration_date": null,
+"data_node_properties": {
+"is_generated": true,
+"path": "user_data/pickles/DATANODE_predictions_1b2d17bf-ba24-47b3-89ac-cd824dfc8ee8.p"
+}
+}
